@@ -13,10 +13,6 @@ public class Car {
         return name.getName();
     }
 
-    public int goCount() {
-        return location.getGoCount();
-    }
-
     public String location() {
         return location.getLocation().toString();
     }
