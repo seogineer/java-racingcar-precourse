@@ -20,7 +20,7 @@
    - 경주
      - 입력 View 호출
      - 출력 View 호출
-     - 자동차 Model 호출 및 참가 자동차 목록 저장
+     - 자동차 Model 호출
 4. Exception
    - IllegalArgumentException
      - 부적절한 시도 횟수 입력 시 발생
