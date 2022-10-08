@@ -15,9 +15,7 @@ public class CarLocation {
         if(pickNumberInRange(0, 9) >= 4){
             goCount++;
             location.append("-");
-            return;
         }
-        location.append(" ");
     }
 
     public int getGoCount() {
