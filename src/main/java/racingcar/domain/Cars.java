@@ -46,7 +46,7 @@ public class Cars {
                 continue;
             }
             if(car.location().length() == max){
-                winner.append(",").append(car.getName());
+                winner.append(", ").append(car.getName());
             }
         }
         System.out.println("최종 우승자 : " + winner);
