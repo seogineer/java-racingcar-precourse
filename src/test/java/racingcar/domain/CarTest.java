@@ -10,13 +10,4 @@ public class CarTest {
         Car car = new Car("car");
         assertEquals("car", car.getName());
     }
-
-    @Test
-    void 자동차_주행(){
-        Car car = new Car("pobi");
-        for(int i = 0; i < 5; i++){
-            car.location.goStop();
-        }
-        System.out.println(car.getName() + " : " + car.location());
-    }
 }
