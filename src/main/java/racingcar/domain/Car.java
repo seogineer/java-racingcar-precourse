@@ -13,7 +13,7 @@ public class Car {
         return name.getName();
     }
 
-    public String location() {
+    public String getLocation() {
         return location.getLocation().toString();
     }
 }
