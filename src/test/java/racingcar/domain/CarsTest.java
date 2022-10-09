@@ -2,29 +2,19 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.lang.reflect.Field;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarsTest {
     @Test
-    void 자동차_이름_중복_검사(){
-        assertThatThrownBy(() -> new Cars(new String[]{"pobi", "pobi", "crong"})).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 자동차 이름은 중복 입력이 불가능합니다.");
-    }
-
-    @Test
-    void 자동차_go_또는_stop(){
-        Cars cars = new Cars(new String[]{"pobi", "honux", "crong"});
-        for(int i = 0; i < 5; i++){
-            cars.goOrStop();
-        }
-    }
-
-    @Test
-    void 최종_우승자_확인(){
-        Cars cars = new Cars(new String[]{"pobi", "honux", "crong"});
-        for(int i = 0; i < 5; i++){
-            cars.goOrStop();
-        }
-        cars.getWinner();
+    void 자동차_이름_추가() throws NoSuchFieldException, IllegalAccessException {
+        Cars cars = new Cars();
+        Field field = cars.getClass().getDeclaredField("cars");
+        field.setAccessible(true);
+        cars.addCar(new String[]{"pobi","honux","crong"});
+        List<Car> list = (List<Car>) field.get(cars);
+        assertEquals(3, list.size());
     }
 }
