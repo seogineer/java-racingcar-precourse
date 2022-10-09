@@ -47,7 +47,7 @@ public class ViewTest {
         new Scanner(System.in);
 
         assertEquals(5, view.inputTryCountView());
-        assertEquals("시도할 회수는 몇회인가요?", outputStreamCaptor.toString().trim());
+        assertEquals("시도할 횟수는 몇회인가요?", outputStreamCaptor.toString().trim());
     }
 
     @ParameterizedTest
