@@ -6,10 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,14 +26,13 @@ public class RacingTest {
         InputStream in = createInputStream(inputNames, inputCount);
         System.setIn(in);
         new Scanner(System.in);
-
-        racing.start();
-        assertThat(outputStreamCaptor.toString()).contains("최종 우승자");
+        try { racing.start(); } catch (final NoSuchElementException ignore){}
+        assertThat(outputStreamCaptor.toString().trim()).contains("최종 우승자");
     }
 
     private static Stream<Arguments> provideInput(){
         return Stream.of(
-                Arguments.of("pobi,honux,crong\n", "5")
+                Arguments.of("pobi,honux,crong\n", "5\n")
                 );
     }
 
