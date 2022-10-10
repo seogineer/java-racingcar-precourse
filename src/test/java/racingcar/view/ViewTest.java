@@ -1,7 +1,9 @@
 package racingcar.view;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -63,15 +65,6 @@ public class ViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" "})
-    void 자동차_이름_공백_입력(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        new Scanner(System.in);
-        try { view.inputCarNameView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_SPACE);
-    }
-
-    @ParameterizedTest
     @ValueSource(strings = {"pobi,pobi"})
     void 자동차_이름_중복_입력(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -85,7 +78,7 @@ public class ViewTest {
     void 시도_횟수_입력_화면(String input){
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
-        assertEquals(5, view.inputTryCountView());
+        try { assertEquals(5, view.inputTryCountView()); } catch (final NoSuchElementException ignore){}
         assertEquals(VIEW_INPUT_TRY_COUNT, outputStreamCaptor.toString().trim());
     }
 

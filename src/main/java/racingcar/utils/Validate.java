@@ -20,9 +20,6 @@ public class Validate {
             if(name.length() > 5 || name.length() < 1){
                 throw new IllegalArgumentException(ERROR_INPUT_NAME_LENGTH);
             }
-            if(name.equals(" ")){
-                throw new IllegalArgumentException(ERROR_INPUT_SPACE);
-            }
             if(!isDuplicate(name, names)){
                 throw new IllegalArgumentException(ERROR_INPUT_DUPLICATED);
             }
