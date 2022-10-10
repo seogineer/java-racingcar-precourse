@@ -2,19 +2,18 @@ package racingcar.view;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
 
-import java.io.*;
-import java.util.*;
-import java.util.stream.Stream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static racingcar.utils.Contant.*;
 
 public class ViewTest {
     private View view = new View();
@@ -38,8 +37,7 @@ public class ViewTest {
         new Scanner(System.in);
 
         String[] names = view.inputCarNameView();
-        assertEquals("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)",
-                outputStreamCaptor.toString().trim());
+        assertEquals(VIEW_INPUT_NAMES, outputStreamCaptor.toString().trim());
         assertEquals(3, names.length);
         assertEquals("pobi", names[0]);
         assertEquals("honux", names[1]);
@@ -52,7 +50,7 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         try { view.inputCarNameView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능하다.");
+        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_NAME_LENGTH);
     }
 
     @ParameterizedTest
@@ -61,7 +59,7 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         try { view.inputCarNameView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능하다.");
+        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_NAME_LENGTH);
     }
 
     @ParameterizedTest
@@ -70,7 +68,7 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         try { view.inputCarNameView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains("[ERROR] 자동차 이름으로 공백은 불가능하다.");
+        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_SPACE);
     }
 
     @ParameterizedTest
@@ -79,7 +77,7 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         try { view.inputCarNameView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains("[ERROR] 자동차 이름은 중복 입력이 불가능하다.");
+        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_DUPLICATED);
     }
 
     @ParameterizedTest
@@ -88,7 +86,7 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         assertEquals(5, view.inputTryCountView());
-        assertEquals("시도할 횟수는 몇회인가요?", outputStreamCaptor.toString().trim());
+        assertEquals(VIEW_INPUT_TRY_COUNT, outputStreamCaptor.toString().trim());
     }
 
     @ParameterizedTest
@@ -97,7 +95,7 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         try { view.inputTryCountView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains("[ERROR] 시도 횟수는 정수 또는 숫자여야 한다.");
+        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_NOT_NUMBER);
     }
 
     @ParameterizedTest
@@ -106,6 +104,6 @@ public class ViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         new Scanner(System.in);
         try { view.inputTryCountView(); } catch (final NoSuchElementException ignore){}
-        assertThat(outputStreamCaptor.toString().trim()).contains("[ERROR] 시도 횟수는 정수 또는 숫자여야 한다.");
+        assertThat(outputStreamCaptor.toString().trim()).contains(ERROR_INPUT_NOT_NUMBER);
     }
 }

@@ -1,14 +1,15 @@
 package racingcar.view;
 
-import racingcar.validate.Validate;
+import racingcar.utils.Validate;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static racingcar.utils.Contant.*;
 
 public class View {
     private final Validate validate = new Validate();
 
     public String[] inputCarNameView(){
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println(VIEW_INPUT_NAMES);
         String[] names;
         do {
             names = readLine().split(",");
@@ -17,7 +18,7 @@ public class View {
     }
 
     public int inputTryCountView() {
-        System.out.println("시도할 횟수는 몇회인가요?");
+        System.out.println(VIEW_INPUT_TRY_COUNT);
         String count;
         do {
             count = readLine();
@@ -27,6 +28,6 @@ public class View {
 
     public void outputResultView() {
         System.out.println();
-        System.out.println("실행 결과");
+        System.out.println(VIEW_EXECUTION_RESULT);
     }
 }

@@ -1,6 +1,8 @@
-package racingcar.validate;
+package racingcar.utils;
 
 import java.util.regex.Pattern;
+
+import static racingcar.utils.Contant.*;
 
 public class Validate {
     public boolean isValidInputNames(String[] names){
@@ -16,13 +18,13 @@ public class Validate {
     private void validateName(String[] names){
         for(String name : names){
             if(name.length() > 5 || name.length() < 1){
-                throw new IllegalArgumentException("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능하다.");
+                throw new IllegalArgumentException(ERROR_INPUT_NAME_LENGTH);
             }
             if(name.equals(" ")){
-                throw new IllegalArgumentException("[ERROR] 자동차 이름으로 공백은 불가능하다.");
+                throw new IllegalArgumentException(ERROR_INPUT_SPACE);
             }
             if(!isDuplicate(name, names)){
-                throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복 입력이 불가능하다.");
+                throw new IllegalArgumentException(ERROR_INPUT_DUPLICATED);
             }
         }
     }
@@ -52,7 +54,7 @@ public class Validate {
 
     private void validateCount(String count){
         if(!Pattern.matches("^[0-9]*$", count)){
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 정수 또는 숫자여야 한다.");
+            throw new IllegalArgumentException(ERROR_INPUT_NOT_NUMBER);
         }
     }
 }
