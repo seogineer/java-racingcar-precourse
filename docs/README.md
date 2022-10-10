@@ -29,4 +29,7 @@
      - 자동차 Model 호출
 4. Exception
    - IllegalArgumentException
+     - 자동차 이름이 1자 미만 또는 5자 초과하는 경우 발생
+     - 자동차 이름이 중복된 경우 발생
+     - 시도 횟수가 정수 또는 숫자가 아닌 경우 발생
    - IllegalStateException
