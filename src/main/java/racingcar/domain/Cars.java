@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public void addCar(String[] participants){
+    public Cars(String[] participants){
+        this.cars = addCar(participants);
+    }
+
+    private List<Car> addCar(String[] participants){
+        List<Car> cars = new ArrayList<>();
         for (String participant : participants) {
             cars.add(new Car(participant));
         }
+        return cars;
     }
 
     public void goOrStop() {

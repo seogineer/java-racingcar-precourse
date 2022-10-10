@@ -10,10 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CarsTest {
     @Test
     void 자동차_이름_추가() throws NoSuchFieldException, IllegalAccessException {
-        Cars cars = new Cars();
+        Cars cars = new Cars(new String[]{"pobi","honux","crong"});
         Field field = cars.getClass().getDeclaredField("cars");
         field.setAccessible(true);
-        cars.addCar(new String[]{"pobi","honux","crong"});
         List<Car> list = (List<Car>) field.get(cars);
         assertEquals(3, list.size());
     }
